@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - var nutrition=[{nutrition_protein:"Vitamin A",nutrition_calories:"100",nutrition_price:1000},{nutrition_protein:"Vitamin D",nutrition_calories:"500",nutrition_price:5000},{nutrition_protein:"Vitamin C",nutrition_calories:"600",nutrition_price:6000}]
+  div(class="container-fluid")
+  div(class="row")
+   each n,index  in nutrition
+    div(class="col-sm-2" onclick =`buy(${index})`) #{n.nutrition_protein}, #{n.nutrition_calories}, #{n.nutrition_price}
+    script.
+        function buy(a)
+        {
+            alert(`You purchased Item ${a+1}`)
+        }
