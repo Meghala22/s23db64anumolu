@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('nutrition', { title: 'Search Results nutrition' });
-});
-
+const nutrition_controlers= require('../controllers/nutrition');
+router.get('/', nutrition_controlers.nutrition_view_all_Page) ;
 module.exports = router;
