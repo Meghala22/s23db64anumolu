@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+// Good code 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var nutritionRouter = require('./routes/nutrition');
@@ -11,6 +11,7 @@ var boardRouter = require('./routes/board');
 var selectorRouter = require('./routes/selector');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
