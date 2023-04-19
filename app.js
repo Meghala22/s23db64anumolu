@@ -78,35 +78,44 @@ async function recreateDB() {
   // Delete everything
   await nutrition.deleteMany();
 
-  let instance1 = new nutrition({
-    nutrition_protein: "Vitamin A", nutrition_calories: '100', nutrition_price: 10000
-  });
-
-  await instance1.save();
-  //instance1.save( function(err,doc) {
-  //if(err) return console.error(err);
-  console.log("First object saved")
-  //});
-
+  let instance1 = new nutrition({ nutrition_type: "Vitamin A", nutrition_calories: '100', nutrition_price: 10000 });
   let instance2 = new nutrition({
-    nutrition_protein: "Vitamin B", nutrition_calories: '200', nutrition_price: 20000
+    nutrition_type: "Vitamin B", nutrition_calories: '200', nutrition_price: 20000
   });
-
-  await instance2.save();
-  //instance1.save( function(err,doc) {
-  //if(err) return console.error(err);
-  console.log("second object saved")
-  //});
-
   let instance3 = new nutrition({
-    nutrition_protein: "Vitamin c", nutrition_calories: '300', nutrition_price: 30000
+    nutrition_type: "Vitamin c", nutrition_calories: '300', nutrition_price: 30000
   });
 
-  await instance3.save();
-  //instance1.save( function(err,doc) {
-  //if(err) return console.error(err);
-  console.log("Third object saved")
-  //});
+
+  instance1.save().then(() => {
+
+    console.log("Object 1 created")
+
+  }).catch((err) => {
+
+    console.log(err);
+
+  })
+
+
+  instance2.save().then(() => {
+
+    console.log("Object 2 created")
+
+  }).catch((err) => {
+
+    console.log(err);
+
+  })
+  instance3.save().then(() => {
+
+    console.log("Object 3 created")
+
+  }).catch((err) => {
+
+    console.log(err);
+
+  })
 }
 let reseed = true;
 if (reseed) { recreateDB(); }
