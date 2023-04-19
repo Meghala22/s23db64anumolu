@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let nutritionid = toShow._id
+    - let nutrition_type = toShow.nutrition_type
+    - let nutrition_calories = toShow.nutrition_calories
+    - let nutrition_price = toShow.nutrition_price
+    - let actionid = "/resource/nutrition/" + nutritionid
+    script.
+      let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='nutritionAttr mr-3') nutrition ID is:
+        div #{nutritionid}
+      div.row
+        div(class='nutritionAttr mr-3') nutrition Type is:
+        div #{nutrition_type}
+      div.row
+        div(class='nutritionAttr mr-3') nutrition calories is:
+        div #{nutrition_calories}
+      div.row
+        div(class='nutritionAttr mr-3') nutrition price is:
+        div #{nutrition_price}
+      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+    script.
+      function cancel() {
+        // Go back to the home page for the costume collection
+        window.location.href='/nutrition'
+      }
+    script.
+      function deleteOnid() {
+        console.log("starting delete")
+        // delete first
+        fetch(actionid, {
+          method: 'DELETE' // Don't need a body for the delete
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Delete succeded")
+          window.location.href='/nutrition'
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Delete failed " + error )
+        });
+      }

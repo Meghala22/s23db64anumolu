@@ -6,3 +6,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+.nutritionAttr {
+  background-color: aquamarine;
+  width: 120px;
+}
+
+.nutritionAttr {
+  background-color: rgb(130, 238, 186);
+  width: 120px;
+}
+
+#nutritionAttr {
+  background-color: rgb(114, 14, 237);
+  width: 325px;
+}
+
+h1 {
+  color: rgb(183, 218, 29);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
