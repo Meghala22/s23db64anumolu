@@ -27,7 +27,7 @@ exports.nutrition_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: nutrition delete DELETE ' + req.params.id);
 };
 // 
-// Handle nutrition_delete update form on PUT.
+// Handle nutrition_delete update form on PUT.ss
 exports.nutrition_update_put = async function(req, res) {
  console.log(`update on id ${req.params.id} with body
 ${JSON.stringify(req.body)}`)
