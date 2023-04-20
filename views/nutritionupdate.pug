@@ -2,39 +2,43 @@ extends layout
 
 block content
   h1= title
-  - let nutritionid = toShow._id
-  - let costume_type = toShow.costume_type
-  - let costumecost = toShow.cost
-  - let costumesize = toShow.size
-  div.row(class='mb-2')
-    div.mr-1 ID is
-    div #{nutritionid}
-  - let actionid = "/resource/nutrition/" + nutritionid
-  form(id='nutritionForm', action= actionid, method="PUT")
-    div.form-group
-      label.nutritionAttr(for='nutrition_type') nutrition type
-      input#nutrition_type(type='text', name='nutrition_type', value= costume_type )
-    div.form-group
-      label.nutritionAttr(for='nutrition_calories') nutrition calories
-      input#nutrition_calories(type='text', name='nutrition_calories', value= costumecost )
-    div.form-group
-      label.nutritionAttr(for='nutrition_price') nutrition price
-      input#nutrition_price(type='number', name='nutrition_price', value= costumesize )
-    input(type="submit")
-  script.
-    document.forms['nutritionForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeded")
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        alert("Update failed " + error )
-      });
-    });
+  if (toShow == null)
+    h2 No instance for detail
+  else 
+    - let nutritionid = toShow._id
+    - let nutrition_type = toShow.nutrition_type
+    - let nutrition_calories = toShow.nutrition_calories
+    - let nutrition_price = toShow.nutrition_price
+
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{nutritionid}
+      - let actionid = "/resource/nutrition/" + nutritionid
+      form(id='nutritionForm', action= actionid, method="PUT")
+        div.form-group
+          label.nutritionAttr(for='nutrition_type') nutrition type
+          input#nutrition_type(type='text', name='nutrition_type', value= nutrition_type )
+        div.form-group
+          label.nutritionAttr(for='nutrition_calories') nutrition calories
+          input#nutrition_calories(type='text', name='nutrition_calories', value= nutrition_calories )
+        div.form-group
+          label.nutritionAttr(for='nutrition_price') nutrition price
+          input#nutrition_price(type='number', name='nutrition_price', value= nutrition_price )
+        input(type="submit")
+      script.
+        document.forms['nutritionForm'].addEventListener('submit', (event) => {
+          event.preventDefault();
+          // TODO do something here to show user that form is being submitted
+          fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+          }).then((body) => {
+            alert("Update succeded")
+            // TODO handle body
+          }).catch((error) => {
+            // TODO handle error
+            alert("Update failed " + error )
+          });
+        });
